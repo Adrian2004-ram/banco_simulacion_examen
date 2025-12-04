@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Paso 1 de 2 - Datos de la transferecia</h2>
+
+<form method="post" th:action="@{/transferencia/transferir/paso2}" th:object="${transferenciaDTO}">
+
+
+    <fieldset>
+        <legend>Cuenta de origen</legend>
+        <div th:each="cuenta : ${cuentas}">
+            <input type="radio" name="cuentaId" th:value="${cuenta.id}"><label th:text="${cuenta.iban}" th:checked="${cuenta.id ne null and cuenta.id eq transferenciaDTO.cuentaId}"></label>
+        </div>
+        <ul th:if="${#fields.hasErrors('cuentaId')}">
+            <li th:each="error: ${#fields.errors('cuentaId')}" th:text="${error}" style="color: red"></li>
+        </ul>
+    </fieldset>
+    <br/>
+    <br/>
+    <label for="nombre">Nombre del beneficiario: </label>
+    <input id="nombre" type="text" name="nombreBeneficiario" th:value="${transferenciaDTO.nombreBeneficiario ?: ''}">
+    <br/>
+    <br/>
+    <label for="ibanDestino">IBAN de destino: </label>
+    <input id="ibanDestino" type="text" name="ibanDestino" th:value="${transferenciaDTO.ibanDestino ?: ''}">
+    <ul th:if="${#fields.hasErrors('ibanDestino')}">
+        <li th:each="error: ${#fields.errors('ibanDestino')}" th:text="${error}" style="color: red"></li>
+    </ul>
+    <br/>
+    <br/>
+
+    <label for="importe">Importe: </label>
+    <input id="importe" type="number" name="importe" th:value="${transferenciaDTO.importe ?: ''}">
+    <ul th:if="${#fields.hasErrors('importe')}">
+        <li th:each="error: ${#fields.errors('importe')}" th:text="${error}" style="color: red"></li>
+    </ul>
+    <br/>
+    <br/>
+    <label for="concepto">Concepto: </label>
+    <input id="concepto" type="text" name="concepto" th:value="${transferenciaDTO.concepto ?: ''}">
+    <br/>
+    <br/>
+    <label for="fechaProg">Fecha programada: </label>
+    <input id="fechaProg" type="date" name="fechaProgramada" th:value="${transferenciaDTO.fechaProgramada ?: ''}">
+    <ul th:if="${#fields.hasErrors('fechaProgramada')}">
+        <li th:each="error: ${#fields.errors('fechaProgramada')}" th:text="${error}" style="color: red"></li>
+    </ul>
+    <br/>
+    <br/>
+
+    <a>
+        <button type="button">CANCELAR</button>
+    </a>
+    <button type="submit">CONTINUAR</button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Lista Transferencias</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Cuenta origen</th>
+        <th>Beneficiario</th>
+        <th>IBAN destino</th>
+        <th>Fecha programada</th>
+        <th>Importe</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="trans : ${transferencias}">
+        <td th:text="${trans.id}"></td>
+        <td th:text="${trans.cuentaId}"></td>
+        <td th:text="${trans.nombreBeneficiario}"></td>
+        <td th:text="${trans.ibanDestino}"></td>
+        <td th:text="${trans.fechaProgramada}"></td>
+        <td th:text="${trans.importe}"></td>
+        <td th:text="${trans.estado}"></td>
+        <td>
+            <a th:href="@{'/admin/transferencia/editar/' + ${trans.id}}">
+                <button>Editar</button>
+            </a>
+            <a th:href="@{'/admin/transferencia/borrar/' + ${trans.id}}">
+                <button>Eliminar</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<a th:href="@{/admin/transferencia}">
+    <button>Crear Evento</button>
+</a>
+
+
+
+</body>
+</html>

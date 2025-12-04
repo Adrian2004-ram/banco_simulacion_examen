@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" th:action="@{'/admin/transferencia/borrar/' + ${transferencia.id}}">
+  <div style="display: flex; flex-direction:  column;">
+    <label th:text="${transferencia.id}"></label>
+    <label th:text="${transferencia.cuentaId}"></label>
+    <label th:text="${transferencia.importe}"></label>
+    <label th:text="${transferencia.fechaProgramada}"></label>
+    <label th:text="${transferencia.nombreBeneficiario}"></label>
+  </div>
+
+  <button type="submit">Borrar Definitivamente</button>
+
+</form>
+
+
+</body>
+</html>

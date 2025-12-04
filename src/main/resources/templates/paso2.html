@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>PAso 2 de 2 - Datos de la transferecia</h2>
+
+<fieldset>
+    <legend>Resumen de la transferencia programada</legend>
+    <table>
+        <tr>
+            <td>Cuenta de origen: </td>
+            <td><p th:text="${cuentaOrigen.iban}"></p></td>
+        </tr>
+        <tr>
+            <td>Beneficiario: </td>
+            <td><p th:text="${transferenciaDTO.nombreBeneficiario}"></p></td>
+        </tr>
+        <tr>
+            <td>IBAN de destino: </td>
+            <td><p th:text="${transferenciaDTO.ibanDestino}"></p></td>
+        </tr>
+        <tr>
+            <td>Importe: </td>
+            <td><p th:text="${transferenciaDTO.importe}"></p></td>
+        </tr>
+        <tr>
+            <td>Concepto: </td>
+            <td><p th:text="${transferenciaDTO.concepto}"></p></td>
+        </tr>
+        <tr>
+            <td>Fecha programada: </td>
+            <td><p th:text="${transferenciaDTO.fechaProgramada}"></p></td>
+        </tr>
+    </table>
+</fieldset>
+
+<form method="post" th:action="@{/transferencia/transferir/paso2}" th:object="${transferenciaDTO}">
+
+    <h2>Verificación de seguridad</h2>
+    <p>Introduce tu código de confirmación (simulacion):</p>
+
+    <label for="codigo">código de configuración: </label>
+    <input id="codigo">
+
+    <p>codigo --> 123456</p>
+
+    <a href="/transferencia/transferir/paso1">
+        <button  type="button">VOLVER PASO 1</button>
+    </a>
+    <button type="submit">CONFIRMAR TRANSFERENCIA</button>
+
+</form>
+
+</body>
+</html>
